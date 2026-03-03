@@ -15,11 +15,21 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-blue-600">
-                <span className="text-xs font-bold text-white">DSO</span>
+            <div className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm">
+                <span className="text-[0.7rem] font-extrabold leading-none">
+                  <span className="text-[#f97316]">D</span>
+                  <span className="text-black">SO</span>
+                </span>
               </div>
-              <p className="text-lg font-semibold text-white">DSO Portal</p>
+              <p className="text-base font-semibold text-slate-100 sm:text-lg">
+                <span className="text-[#f97316]">D</span>
+                <span>epartment of </span>
+                <span className="text-[#f97316]">S</span>
+                <span>tudent </span>
+                <span className="text-[#f97316]">O</span>
+                <span>rganisation</span>
+              </p>
             </div>
             <p className="mt-2 text-sm text-slate-500">
               Division of Student Organizations

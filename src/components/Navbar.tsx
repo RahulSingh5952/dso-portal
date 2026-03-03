@@ -12,15 +12,20 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex shrink-0 items-center gap-2"
-        >
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-blue-600">
-            <span className="text-xs font-bold text-white">DSO</span>
+        <Link href="/" className="flex shrink-0 items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
+            <span className="text-[0.7rem] font-extrabold leading-none">
+              <span className="text-[#f97316]">D</span>
+              <span className="text-black">SO</span>
+            </span>
           </div>
-          <span className="text-lg font-semibold tracking-tight text-white">
-            DSO Portal
+          <span className="text-base font-semibold tracking-tight text-slate-100 sm:text-lg">
+            <span className="text-[#f97316]">D</span>
+            <span>epartment of </span>
+            <span className="text-[#f97316]">S</span>
+            <span>tudent </span>
+            <span className="text-[#f97316]">O</span>
+            <span>rganisation</span>
           </span>
         </Link>
 
