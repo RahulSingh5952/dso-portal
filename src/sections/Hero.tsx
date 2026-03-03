@@ -7,27 +7,27 @@ import { useEffect, useState } from "react";
 const HERO_SLIDES = [
   {
     id: "slide-1",
-    src: "/images/hero-1.jpg",
-    alt: "Students collaborating at a tech meetup",
-    label: "Tech communities",
+    src: "/hero-1.png",
+    alt: "Student leaders and faculty at a flagship event",
+    label: "Flagship cultural showcase",
   },
   {
     id: "slide-2",
-    src: "/images/hero-2.jpg",
-    alt: "Auditorium filled during cultural night",
-    label: "Cultural nights",
+    src: "/hero-2.png",
+    alt: "Large student team celebrating after an event",
+    label: "Student leadership in action",
   },
   {
     id: "slide-3",
-    src: "/images/hero-3.jpg",
-    alt: "Student leaders planning events",
-    label: "Student leadership",
+    src: "/hero-3.png",
+    alt: "Students gathered outdoors during a campus activity",
+    label: "Campus-wide experiences",
   },
   {
     id: "slide-4",
-    src: "/images/hero-4.jpg",
-    alt: "Hackathon participants working overnight",
-    label: "Hackathons & fests",
+    src: "/hero-4.png",
+    alt: "Team celebrating on stage after a competition",
+    label: "Competitions & bootcamps",
   },
 ] as const;
 
@@ -53,14 +53,14 @@ export default function Hero() {
         <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-16">
           {/* Left: Content */}
           <div className="w-full lg:w-1/2">
-            <h1 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-left lg:text-5xl">
+            <h1 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-left lg:text-5xl lg:leading-[1.15]">
               <span className="block">Empowering Student</span>
               <span className="mt-1 block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(129,140,248,0.35)]">
                 Organizations
               </span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-center text-base leading-relaxed text-slate-400 sm:text-lg lg:mt-6 lg:text-left">
+            <p className="mt-5 max-w-xl text-center text-base leading-relaxed text-slate-400 sm:text-lg lg:mt-7 lg:text-left lg:pr-6">
               A unified portal to manage, discover, and grow student organizations
               on campus. Powering everything from recruitments to flagship events.
             </p>

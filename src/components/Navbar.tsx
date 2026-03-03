@@ -1,25 +1,61 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { NAV_LINKS } from "@/lib/constants";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  const NAV_ITEMS = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Contact Us", href: "/contact" },
+  ] as const;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const id = window.requestAnimationFrame(() => {
+      setHasMounted(true);
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, []);
+
+  const headerBase =
+    "sticky top-0 z-50 w-full border-b border-white/10 transition-all duration-300";
+  const headerBg = isScrolled
+    ? "bg-black/60 backdrop-blur-lg shadow-[0_6px_18px_rgba(15,23,42,0.55)]"
+    : "bg-black/40 backdrop-blur-md";
+  const headerAnim = hasMounted
+    ? "opacity-100 translate-y-0"
+    : "opacity-0 -translate-y-2";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        {/* Logo */}
+    <header className={`${headerBase} ${headerBg} ${headerAnim}`}>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
+        {/* Left: Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
-            <span className="text-[0.7rem] font-extrabold leading-none">
+            <span className="text-[0.7rem] font-extrabold leading-none tracking-tight">
               <span className="text-[#f97316]">D</span>
               <span className="text-black">SO</span>
             </span>
           </div>
-          <span className="text-base font-semibold tracking-tight text-slate-100 sm:text-lg">
+          <span className="hidden text-base font-semibold tracking-tight text-slate-100 sm:inline sm:text-lg">
             <span className="text-[#f97316]">D</span>
             <span>epartment of </span>
             <span className="text-[#f97316]">S</span>
@@ -29,42 +65,40 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Center: Nav Links + Search - Desktop */}
-        <div className="hidden items-center gap-8 lg:flex lg:flex-1 lg:justify-center">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="relative hidden w-64 xl:block">
-            <input
-              type="search"
-              placeholder="Search organization..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 pl-9 text-sm text-white placeholder-slate-400 outline-none transition-colors focus:border-violet-500/50 focus:bg-white/10 focus:ring-1 focus:ring-violet-500/30"
-            />
-            <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+        {/* Center: Search (desktop / tablet) */}
+        <div className="hidden flex-1 items-center justify-center lg:flex">
+          <div className="group flex w-full max-w-xl items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white shadow-sm backdrop-blur transition-all duration-300 focus-within:border-violet-400/60 focus-within:bg-white/10 focus-within:shadow-[0_0_0_1px_rgba(129,140,248,0.55)] focus-within:ring-2 focus-within:ring-violet-500/40 focus-within:scale-[1.02]">
+            <span className="text-slate-400 transition-colors group-focus-within:text-violet-300">
               <SearchIcon />
             </span>
+            <input
+              type="search"
+              placeholder="Search your organisation..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-transparent text-sm text-white placeholder-slate-400 outline-none"
+            />
           </div>
         </div>
 
-        {/* Right: Login + Get Started - Desktop */}
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <Link
-            href="/login"
-            className="rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/5"
-          >
-            Login
-          </Link>
+        {/* Right: Nav links + Get Started (desktop) */}
+        <div
+          className={`hidden items-center gap-6 text-sm font-medium text-slate-200 transition-opacity duration-500 ${
+            hasMounted ? "opacity-100" : "opacity-0"
+          } lg:flex`}
+        >
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="relative inline-flex items-center text-sm font-medium text-slate-200 transition-colors duration-200 hover:text-white after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-to-r after:from-violet-400 after:to-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {item.label}
+            </Link>
+          ))}
           <Link
             href="/join"
-            className="rounded-lg bg-gradient-to-r from-violet-500 to-blue-600 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-violet-500/25 transition-opacity hover:opacity-90"
+            className="inline-flex items-center rounded-full bg-gradient-to-r from-violet-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-transform transition-shadow duration-200 hover:scale-[1.05] hover:shadow-[0_0_18px_rgba(129,140,248,0.65)]"
           >
             Get Started
           </Link>
@@ -74,7 +108,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <CloseIcon /> : <MenuIcon />}
@@ -83,27 +117,33 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-slate-950/95 px-4 py-4 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-white/10 bg-black/80 px-4 py-4 backdrop-blur-xl lg:hidden">
           <div className="flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
+            <div className="mt-1">
+              <div className="group flex w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white shadow-sm backdrop-blur transition-all duration-300 focus-within:border-violet-400/60 focus-within:bg-white/10 focus-within:shadow-[0_0_0_1px_rgba(129,140,248,0.55)] focus-within:ring-2 focus-within:ring-violet-500/40">
+                <span className="text-slate-400 transition-colors group-focus-within:text-violet-300">
+                  <SearchIcon />
+                </span>
+                <input
+                  type="search"
+                  placeholder="Search your organisation..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-transparent text-sm text-white placeholder-slate-400 outline-none"
+                />
+              </div>
+            </div>
+
+            {NAV_ITEMS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium text-slate-300 hover:text-white"
+                className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2">
-              <input
-                type="search"
-                placeholder="Search organization..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder-slate-400 outline-none focus:border-violet-500/50"
-              />
-            </div>
             <div className="flex gap-3 pt-2">
               <Link
                 href="/login"
@@ -115,7 +155,7 @@ export default function Navbar() {
               <Link
                 href="/join"
                 onClick={() => setMobileOpen(false)}
-                className="flex-1 rounded-lg bg-gradient-to-r from-violet-500 to-blue-600 py-2.5 text-center text-sm font-medium text-white"
+                className="flex-1 rounded-full bg-gradient-to-r from-violet-500 to-blue-600 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-violet-500/30 transition-transform duration-200 hover:scale-[1.03]"
               >
                 Get Started
               </Link>
