@@ -7,7 +7,7 @@ const FEATURED_EVENTS = [
     title: "Tech Fest 2025",
     date: "Mar 15 • 10:00 AM",
     description: "Campus-wide celebration of technology, innovation, and ideas.",
-    image: "/images/event-techfest.jpg",
+    image: "/globe.svg",
     href: "/events",
   },
   {
@@ -15,7 +15,7 @@ const FEATURED_EVENTS = [
     title: "Cultural Night",
     date: "Apr 02 • 6:30 PM",
     description: "An evening of music, dance, and performances from every club.",
-    image: "/images/event-cultural.jpg",
+    image: "/file.svg",
     href: "/events",
   },
   {
@@ -23,7 +23,7 @@ const FEATURED_EVENTS = [
     title: "Open Recruitment Week",
     date: "Apr 10 • All day",
     description: "Explore open positions across student organizations on campus.",
-    image: "/images/event-recruitment.jpg",
+    image: "/window.svg",
     href: "/join",
   },
   {
@@ -31,7 +31,7 @@ const FEATURED_EVENTS = [
     title: "Leadership Summit",
     date: "Apr 25 • 3:00 PM",
     description: "A forum for student leaders to share, learn, and collaborate.",
-    image: "/images/event-leadership.jpg",
+    image: "/next.svg",
     href: "/events",
   },
 ] as const;

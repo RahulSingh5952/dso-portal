@@ -106,3 +106,51 @@ body {
     box-shadow: 0 0 32px 0 rgba(59, 130, 246, 0.45);
   }
 }
+
+/* Vertical scroll fade masks for bulletin */
+.v-scroll-mask-top {
+  background: linear-gradient(to bottom, rgba(2, 6, 23, 1), rgba(2, 6, 23, 0));
+}
+.v-scroll-mask-bottom {
+  background: linear-gradient(to top, rgba(2, 6, 23, 1), rgba(2, 6, 23, 0));
+}
+
+/* Thin scrollbar styling */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+/* Live badge blinking dot */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: live-blink 1.6s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes live-blink {
+  0%, 100% { opacity: 0.8; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 18px 2px rgba(16, 185, 129, 0.55); }
+}
+
+/* Number soft pulse */
+.number-pulse {
+  animation: number-pulse 2.8s ease-in-out infinite;
+}
+@keyframes number-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.04); }
+}

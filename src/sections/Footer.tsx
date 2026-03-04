@@ -7,23 +7,19 @@ const QUICK_LINKS = [
   { href: "/join", label: "Join" },
 ];
 
-const TAGS = ["Music", "Sports", "Culture", "Tech", "Concerts"] as const;
+const SOCIALS = [
+  { label: "Twitter", href: "https://twitter.com/", icon: XIcon },
+  { label: "Instagram", href: "https://instagram.com/", icon: InstagramIcon },
+  { label: "YouTube", href: "https://youtube.com/", icon: YouTubeIcon },
+  { label: "LinkedIn", href: "https://linkedin.com/", icon: LinkedInIcon },
+];
 
 export default function Footer() {
   return (
     <footer className="relative mt-16 border-t border-white/10 bg-gradient-to-b from-black via-indigo-950 to-slate-950">
-      {/* Top wave divider */}
+      {/* Subtle gradient divider */}
       <div className="pointer-events-none absolute inset-x-0 -top-px">
-        <svg
-          viewBox="0 0 1440 80"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-full text-indigo-900/40"
-        >
-          <path
-            fill="currentColor"
-            d="M0,32L60,48C120,64,240,96,360,96C480,96,600,64,720,48C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-          />
-        </svg>
+        <div className="mx-auto h-px max-w-7xl bg-gradient-to-r from-transparent via-indigo-900/40 to-transparent" />
       </div>
 
       {/* Gradient blobs */}
@@ -68,10 +64,10 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group flex items-center justify-between text-sm text-slate-400 transition-all duration-300 hover:text-slate-50"
+                      className="group flex items-center justify-between text-sm text-slate-300 transition-all duration-300 hover:text-white"
                     >
                       <span>{link.label}</span>
-                      <span className="translate-x-1 opacity-0 text-xs text-slate-400 transition-all duration-300 group-hover:translate-x-2 group-hover:opacity-100">
+                      <span className="translate-x-1 opacity-0 text-base text-violet-300 transition-all duration-300 group-hover:translate-x-2 group-hover:opacity-100">
                         →
                       </span>
                     </Link>
@@ -104,31 +100,22 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Campus in motion + social */}
-            <div className="space-y-5">
-              <div>
-                <h4 className="text-sm font-semibold text-white">
-                  Campus in Motion
-                </h4>
-                <div className="mt-3 flex flex-wrap gap-2.5">
-                  {TAGS.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center rounded-full border border-violet-400/40 bg-white/5 px-3 py-1 text-xs font-medium text-slate-100 shadow-sm shadow-violet-500/20 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:bg-white/10 hover:shadow-[0_0_18px_rgba(129,140,248,0.45)]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold text-white">Follow Us</h4>
-                <div className="mt-3 flex gap-3">
-                  <SocialIcon label="Twitter" />
-                  <SocialIcon label="LinkedIn" />
-                  <SocialIcon label="Instagram" />
-                </div>
+            {/* Social links */}
+            <div>
+              <h4 className="text-sm font-semibold text-white">Follow Us</h4>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {SOCIALS.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-sm font-medium text-slate-200 shadow-sm shadow-slate-900/40 backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-400/60 hover:bg-gradient-to-br hover:from-violet-500/20 hover:to-blue-500/20 hover:text-white hover:shadow-[0_0_18px_rgba(129,140,248,0.55)]"
+                  >
+                    <Icon />
+                    <span>{label}</span>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -236,15 +223,44 @@ function LocationIcon() {
     </svg>
   );
 }
-
-function SocialIcon({ label }: { label: string }) {
+function XIcon() {
   return (
-    <button
-      type="button"
-      aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-semibold text-slate-200 shadow-sm shadow-slate-900/40 backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-400/60 hover:bg-gradient-to-br hover:from-violet-500/40 hover:to-blue-500/40 hover:text-white hover:shadow-[0_0_18px_rgba(129,140,248,0.55)]"
-    >
-      {label[0]}
-    </button>
+    <svg width="16" height="16" viewBox="0 0 24 24" className="text-slate-300">
+      <path
+        d="M18 5H15.5L6 19H8.5L18 5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M6 5H8.5L18 19H15.5L6 5Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+function InstagramIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" className="text-slate-300">
+      <rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" strokeWidth="1.6" fill="none" />
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.6" fill="none" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+function YouTubeIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" className="text-slate-300">
+      <rect x="3" y="7" width="18" height="10" rx="3" stroke="currentColor" strokeWidth="1.6" fill="none" />
+      <path d="M10 9L15 12L10 15V9Z" fill="currentColor" />
+    </svg>
+  );
+}
+function LinkedInIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" className="text-slate-300">
+      <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="1.6" fill="none" />
+      <rect x="7" y="10" width="2.5" height="7" fill="currentColor" />
+      <circle cx="8.25" cy="7.5" r="1.2" fill="currentColor" />
+      <path d="M12 10H14.8C16.4 10 17 11.1 17 12.5V17H14.5V13.4C14.5 12.7 14.2 12.2 13.4 12.2H12V17H9.5V10H12Z" fill="currentColor" />
+    </svg>
   );
 }
