@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import BackgroundFX from "@/components/BackgroundFX";
 import Footer from "@/sections/Footer";
 
 export default function PublicLayout({
@@ -9,6 +10,7 @@ export default function PublicLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
+      <BackgroundFX />
       <main className="flex-1">{children}</main>
       <Footer />
     </div>

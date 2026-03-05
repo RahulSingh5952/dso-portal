@@ -1,11 +1,20 @@
+'use client';
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function JoinWithUs() {
   return (
     <section className="relative overflow-hidden border-b border-white/10 bg-slate-950 py-16 sm:py-20">
       <div className="absolute inset-0 bg-gradient-to-t from-violet-950/20 via-transparent to-transparent" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Join With Us
           </h2>
@@ -20,7 +29,7 @@ export default function JoinWithUs() {
             Explore Open Recruitments
             <span className="ml-2">→</span>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

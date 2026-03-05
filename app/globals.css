@@ -154,3 +154,74 @@ body {
   0%, 100% { opacity: 0.25; transform: scale(1); }
   50% { opacity: 0.45; transform: scale(1.04); }
 }
+
+/* Hero animated background orb */
+.hero-orb {
+  animation: hero-orb 12s ease-in-out infinite;
+}
+@keyframes hero-orb {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) scale(1.05);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* Site-wide FX */
+.fx-float {
+  animation-name: fx-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.fx-slow { animation-duration: 14s; }
+.fx-slower { animation-duration: 20s; }
+@keyframes fx-float {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -14px, 0) scale(1.03); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.fx-dash {
+  stroke-dasharray: 8 8;
+  animation: fx-dash-move 10s linear infinite;
+}
+.fx-offset {
+  animation-duration: 14s;
+  animation-delay: -3s;
+}
+@keyframes fx-dash-move {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 160; }
+}
+
+/* Live character motion */
+.fx-bob {
+  animation: fx-bob 6s ease-in-out infinite;
+}
+@keyframes fx-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.fx-sway {
+  animation: fx-sway 5.5s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes fx-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+}
+.fx-drift {
+  animation: fx-drift 9s ease-in-out infinite;
+}
+@keyframes fx-drift {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(6px) translateY(-2px); }
+  50% { transform: translateX(10px) translateY(0); }
+  75% { transform: translateX(6px) translateY(2px); }
+}

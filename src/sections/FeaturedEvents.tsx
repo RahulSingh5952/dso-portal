@@ -1,37 +1,48 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const FEATURED_EVENTS = [
   {
     id: "ev-1",
-    title: "Tech Fest 2025",
-    date: "Mar 15 • 10:00 AM",
-    description: "Campus-wide celebration of technology, innovation, and ideas.",
-    image: "/globe.svg",
+    title: "Concert Night",
+    date: "Sat • 7:00 PM",
+    description: "Massive crowd, lights and music on the main stage.",
+    image: "/featured/featured1.jpg",
     href: "/events",
   },
   {
     id: "ev-2",
-    title: "Cultural Night",
-    date: "Apr 02 • 6:30 PM",
-    description: "An evening of music, dance, and performances from every club.",
-    image: "/file.svg",
+    title: "Farewell Wall",
+    date: "Sun • 3:00 PM",
+    description: "Batch signatures and photos at the alumni backdrop.",
+    image: "/featured/featured2.jpg",
     href: "/events",
   },
   {
     id: "ev-3",
-    title: "Open Recruitment Week",
-    date: "Apr 10 • All day",
-    description: "Explore open positions across student organizations on campus.",
-    image: "/window.svg",
-    href: "/join",
+    title: "Cultural Procession",
+    date: "Mon • 5:00 PM",
+    description: "Traditional celebration with colors and flags on campus.",
+    image: "/featured/featured3.jpg",
+    href: "/events",
   },
   {
     id: "ev-4",
-    title: "Leadership Summit",
-    date: "Apr 25 • 3:00 PM",
-    description: "A forum for student leaders to share, learn, and collaborate.",
-    image: "/next.svg",
+    title: "Journalism Summit 2026",
+    date: "Tue • 11:00 AM",
+    description: "New Age Journalism — beyond newsrooms.",
+    image: "/featured/featured4.jpg",
+    href: "/events",
+  },
+  {
+    id: "ev-5",
+    title: "Leaders’ Meet",
+    date: "Wed • 2:00 PM",
+    description: "Interaction with administration and core team.",
+    image: "/featured/featured5.jpg",
     href: "/events",
   },
 ] as const;
@@ -42,8 +53,13 @@ export default function FeaturedEvents() {
   return (
     <section className="border-b border-white/10 bg-slate-950/50 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Premium centered header */}
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
             Featured Events
           </h2>
@@ -51,7 +67,7 @@ export default function FeaturedEvents() {
             A live window into what student organizations are hosting this season.
           </p>
           <div className="mx-auto mt-5 h-px w-20 rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-blue-500" />
-        </div>
+        </motion.div>
 
         <div className="mt-6 flex items-center justify-center">
           <Link
@@ -63,9 +79,15 @@ export default function FeaturedEvents() {
         </div>
 
         {/* Horizontal auto-moving carousel */}
-        <div className="relative mt-10 overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-slate-950/80 via-slate-950/40 to-transparent" />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="relative mt-10 overflow-hidden"
+        >
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-gradient-to-r from-slate-950/95 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-l from-slate-950/95 to-transparent" />
 
           <div className="featured-marquee-track flex gap-6">
             {marqueeEvents.map((event, index) => (
@@ -99,7 +121,7 @@ export default function FeaturedEvents() {
               </Link>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
