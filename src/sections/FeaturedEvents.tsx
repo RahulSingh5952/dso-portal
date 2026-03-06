@@ -10,7 +10,7 @@ const FEATURED_EVENTS = [
     title: "Concert Night",
     date: "Sat • 7:00 PM",
     description: "Massive crowd, lights and music on the main stage.",
-    image: "/featured/featured1.jpg",
+    image: "/featured/featured1.png",
     href: "/events",
   },
   {
@@ -18,7 +18,7 @@ const FEATURED_EVENTS = [
     title: "Farewell Wall",
     date: "Sun • 3:00 PM",
     description: "Batch signatures and photos at the alumni backdrop.",
-    image: "/featured/featured2.jpg",
+    image: "/featured/featured2.png",
     href: "/events",
   },
   {
@@ -26,7 +26,7 @@ const FEATURED_EVENTS = [
     title: "Cultural Procession",
     date: "Mon • 5:00 PM",
     description: "Traditional celebration with colors and flags on campus.",
-    image: "/featured/featured3.jpg",
+    image: "/featured/featured3.png",
     href: "/events",
   },
   {
@@ -34,7 +34,7 @@ const FEATURED_EVENTS = [
     title: "Journalism Summit 2026",
     date: "Tue • 11:00 AM",
     description: "New Age Journalism — beyond newsrooms.",
-    image: "/featured/featured4.jpg",
+    image: "/featured/featured4.png",
     href: "/events",
   },
   {
@@ -42,7 +42,7 @@ const FEATURED_EVENTS = [
     title: "Leaders’ Meet",
     date: "Wed • 2:00 PM",
     description: "Interaction with administration and core team.",
-    image: "/featured/featured5.jpg",
+    image: "/featured/featured5.png",
     href: "/events",
   },
 ] as const;
